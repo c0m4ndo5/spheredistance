@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace spheredistance.Model
 {
     [DataContract]
-    public class Customers
+    public class Customer
     {
         [DataMember]
         public int user_id { get; set; }

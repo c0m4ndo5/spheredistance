@@ -20,7 +20,6 @@ namespace spheredistance
             }).AddTransient<SphereDistanceApp>();
 
             var serviceProvider = services.BuildServiceProvider();
-
             serviceProvider.GetService<SphereDistanceApp>().run();
         }
     }
