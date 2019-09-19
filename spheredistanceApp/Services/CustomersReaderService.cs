@@ -24,8 +24,12 @@ namespace spheredistance.Services
             var currentCustomerText = inputReader.ReadLine();
             while (currentCustomerText != null)
             {
-                var currentCustomerObject = JsonConvert.DeserializeObject<Customer>(currentCustomerText);
-                customers.Add(currentCustomerObject);
+                //The line must contain at least opening and closing braces {} (other than whitespace)
+                if (currentCustomerText.Replace(" ", "").Length > 2)
+                {
+                    var currentCustomerObject = JsonConvert.DeserializeObject<Customer>(currentCustomerText);
+                    customers.Add(currentCustomerObject);
+                }
                 currentCustomerText = inputReader.ReadLine();
             }
             return customers;
