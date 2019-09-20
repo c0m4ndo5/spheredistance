@@ -8,16 +8,11 @@ namespace spheredistance.Services
 {
     public interface ICustomerReaderService
     {
-        //will I need this? leave for later
+        List<Customer> readCustomers(TextReader inputReader);
     }
 
-    public class CustomerReaderService
+    public class CustomerReaderService : ICustomerReaderService
     {
-        /*         TextReader reader;
-                public CustomerReaderService(TextReader reader)
-                {
-                    this.reader = reader;
-                } */
         public List<Customer> readCustomers(TextReader inputReader)
         {
             List<Customer> customers = new List<Customer>();

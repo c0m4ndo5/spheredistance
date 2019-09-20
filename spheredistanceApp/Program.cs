@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+using spheredistance.Services;
 
 namespace spheredistance
 {
@@ -10,17 +9,13 @@ namespace spheredistance
         static void Main(string[] args)
         {
             var services = new ServiceCollection()
-            .AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddConsole(options =>
-                {
-                    options.IncludeScopes = true;
-                });
-                //loggingBuilder.SetMinimumLevel(LogLevel.Debug);
-            }).AddTransient<SphereDistanceApp>();
+            .AddScoped(typeof(ICustomerReaderService), typeof(CustomerReaderService))
+            .AddScoped<IGreatCircleDistanceService>(_serviceProvider => new GreatCircleDistanceService(6371.0088))
+            .AddScoped(typeof(ICustomerOutputService), typeof(CustomerOutputService))
+            .AddTransient<SphereDistanceApp>();
 
             var serviceProvider = services.BuildServiceProvider();
-            serviceProvider.GetService<SphereDistanceApp>().run();
+            serviceProvider.GetService<SphereDistanceApp>().run("./sample/customers.txt", "./sample/output.txt", -6.238335, 53.2451022, 100);
         }
     }
 }

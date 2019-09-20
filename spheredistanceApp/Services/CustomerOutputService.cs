@@ -8,9 +8,9 @@ namespace spheredistance.Services
 {
     public interface ICustomerOutputService
     {
-
+        void writeCustomers(List<Customer> customers, TextWriter textWriter);
     }
-    public class CustomerOutputService
+    public class CustomerOutputService : ICustomerOutputService
     {
         public void writeCustomers(List<Customer> customers, TextWriter textWriter)
         {
