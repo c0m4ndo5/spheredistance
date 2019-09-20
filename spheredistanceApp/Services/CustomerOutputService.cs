@@ -6,6 +6,8 @@ using spheredistance.Model;
 
 namespace spheredistance.Services
 {
+    //This class simply writes a list of customers too a text writer stream
+    //This could represent a file, console or other targets
     public interface ICustomerOutputService
     {
         void writeCustomers(List<Customer> customers, TextWriter textWriter);
